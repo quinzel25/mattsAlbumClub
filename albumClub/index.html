@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matt Healy's Album Club</title>
+
+
+<!--    CSS LINKS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="albumClub.css">
+
+<!--    JS LINKS-->
+    <script async src="albumClub.js"></script>
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js"></script>
+
+
+
+</head>
+<body>
+<div class="jumbotron">
+
+    <h1>Matt's Album Club</h1>
+
+</div>
+
+<div class="card add-album m-2 p-2">
+
+    <h4 class="card-title">Add new album</h4>
+
+    <div class="form-group">
+        <label for="albumName">Album Name</label>
+        <input id="albumName" class="form-control" v-model.trim="newAlbumName">
+    </div>
+
+    <div class="form-group">
+        <label for="artistName">Artist Name</label>
+        <input id="artistName" class="form-control" v-model.trim="newArtistName">
+    </div>
+
+    <div class="form-group">
+        <label for="hostName">Suggester Name</label>
+        <input id="hostName" class="form-control" v-model.trim="newHostName">
+    </div>
+
+    <button class="btn btn-primary" v-on:click="addAlbum">Add</button>
+</div>
+
+
+</body>
+</html>
