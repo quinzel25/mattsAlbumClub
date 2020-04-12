@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <title>Matt Healy's Album Club</title>
 
-
-<!--    CSS LINKS-->
+    <!--    CSS LINKS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="albumClub.css">
 
-<!--    JS LINKS-->
+    <!--    JS LINKS-->
     <script async src="albumClub.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@2.6.7/dist/vue.js"></script>
-
-
 
 </head>
 <body>
@@ -23,28 +23,116 @@
     <h1>Matt's Album Club</h1>
 
 </div>
+<!--start of page-->
+<div id="app">
+    <!--    start of list of albums-->
+    <div class="card album-list m22 p-2">
+        <h4 class="card-title">Albums</h4>
+        <div id="album-table">
+            <table class="table">
+                <tr>
+                    <th>Album Name</th>
+                    <th>Artist</th>
+                    <th>Suggester</th>
+                </tr>
+                <tr v-for="album in albums">
+                    <td>{{album.name}}</td>
+                    <td>{{album.artist}}</td>
+                    <td>{{album.host}}</td>
+                </tr>
 
-<div class="card add-album m-2 p-2">
+            </table>
 
-    <h4 class="card-title">Add new album</h4>
-
-    <div class="form-group">
-        <label for="albumName">Album Name</label>
-        <input id="albumName" class="form-control" v-model.trim="newAlbumName">
+        </div>
     </div>
+    <!--    end of list of albums-->
 
-    <div class="form-group">
-        <label for="artistName">Artist Name</label>
-        <input id="artistName" class="form-control" v-model.trim="newArtistName">
-    </div>
 
-    <div class="form-group">
-        <label for="hostName">Suggester Name</label>
-        <input id="hostName" class="form-control" v-model.trim="newHostName">
-    </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addAlbumModal">
+        Add New Album
+    </button>
 
-    <button class="btn btn-primary" v-on:click="addAlbum">Add</button>
+<!--modal for adding new album-->
+    <div class="modal fade" id="addAlbumModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1>Add New Album</h1>
+                </div>
+                <div class="modal-body">
+
+                    <div class="alert alert-danger" v-show="errors.length">
+                        <li v-for="error in errors">{{ error }}</li>
+                    </div>
+
+                    <div class="card add-album m-2 p-2">
+
+                        <h4 class="card-title">Add new album</h4>
+
+                        <div class="form-group">
+                            <label for="albumName">Album Name</label>
+                            <input id="albumName" class="form-control" v-model.trim="newAlbumName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="artistName">Artist Name</label>
+                            <input id="artistName" class="form-control" v-model.trim="newArtistName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hostName">Suggester Name</label>
+                            <input id="hostName" class="form-control" v-model.trim="newHostName">
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" v-on:click="addAlbum">Add</button>
+                        <button class="btn btn-danger" data-dismiss="modal" value="Close">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--end of modal-->
+
+
+    <!--start of add new album-->
+<!--    <div class="alert alert-danger" v-show="errors.length">-->
+<!--        <li v-for="error in errors">{{ error }}</li>-->
+<!--    </div>-->
+
+<!--    <div class="card add-album m-2 p-2">-->
+
+<!--        <h4 class="card-title">Add new album</h4>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="albumName">Album Name</label>-->
+<!--            <input id="albumName" class="form-control" v-model.trim="newAlbumName">-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="artistName">Artist Name</label>-->
+<!--            <input id="artistName" class="form-control" v-model.trim="newArtistName">-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="hostName">Suggester Name</label>-->
+<!--            <input id="hostName" class="form-control" v-model.trim="newHostName">-->
+<!--        </div>-->
+
+<!--        <button class="btn btn-primary" v-on:click="addAlbum">Add</button>-->
+<!--    </div>-->
+    <!--end of add new album-->
+
+
+
+
+
 </div>
+<!--end of page-->
+
+
 
 
 </body>
